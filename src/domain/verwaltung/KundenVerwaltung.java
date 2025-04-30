@@ -11,6 +11,8 @@ public class KundenVerwaltung extends Person{
         this.adresse = adresse;
     }
 
+
+
     public int getKundenID() {
         return kundenID;
     }
@@ -26,4 +28,21 @@ public class KundenVerwaltung extends Person{
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
+
+    public void inWarenkorbLegen() {
+
+    }
+
+    public void stueckzahlAendern() { //von Artikeln im Warenkorb
+
+    }
+
+    public void warenkorbLeeren() {
+
+    }
+
+    public void kaufen() {
+
+    }
+    
 }

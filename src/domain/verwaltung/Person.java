@@ -15,4 +15,12 @@ public class Person {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void registrieren() { //Erstmal nur Notiz. gehört das hier überhaupt rein? Nachschauen
+
+    }
+
+    public void einloggen(String benutzername, String passwort) { //gleiches in Grün wie bei registrieren()
+
+    }
 }
