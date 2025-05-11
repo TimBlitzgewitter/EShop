@@ -4,7 +4,7 @@ public class Kategorie {
 
     private String name;
 
-    public Kategorie(String name) {
+    Kategorie(String name) {
 
         this.name = name;
 

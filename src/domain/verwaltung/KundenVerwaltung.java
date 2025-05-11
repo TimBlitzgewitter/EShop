@@ -1,12 +1,12 @@
 package domain.verwaltung;
 
-public class KundenVerwaltung extends Person{
+public class KundenVerwaltung extends Benutzer{
 
     private int kundenID;
     private String adresse;
 
-    public KundenVerwaltung(String name, int id, String adresse) {
-        super(name);
+    public KundenVerwaltung(String name, String benutzerkennung, String passwort, String adresse, int id) {
+        super(name, benutzerkennung, passwort);
         this.kundenID = id;
         this.adresse = adresse;
     }

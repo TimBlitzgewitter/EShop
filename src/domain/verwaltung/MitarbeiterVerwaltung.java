@@ -1,11 +1,16 @@
 package domain.verwaltung;
 
-public class MitarbeiterVerwaltung extends Person implements ArtikelVerwaltung{
+import domain.bestand.Artikel;
+import domain.bestand.ArtikelService;
+
+
+public class MitarbeiterVerwaltung extends Benutzer implements ArtikelVerwaltung {
 
     private int mitarbeiterID;
+    private ArtikelService artikelService = new ArtikelService();
 
-    public MitarbeiterVerwaltung(String name, int id) {
-        super(name);
+    public MitarbeiterVerwaltung(String name,String benutzerkennung, String passwort, int id) {
+        super(name, benutzerkennung, passwort);
         this.mitarbeiterID = id;
     }
 
@@ -17,12 +22,12 @@ public class MitarbeiterVerwaltung extends Person implements ArtikelVerwaltung{
         this.mitarbeiterID = mitarbeiterID;
     }
 
-    public void artikelAnlegen(String bezeichnung, String kategorie, int preis, int bestand) {
-        //Parameter nochmal überprüfen wenn zuhause
-        this.bezeichnung = bezeichnung;
+    public Artikel artikelAnlegen(String kategorie_name, int id, String name, int bestand, int preis) {
+        return artikelService.artikelAnlegen(kategorie_name, id, name, bestand, preis);
     }
 
-    public void artikelBearbeiten(Artikel artikel, String bezeichnung, String kategorie, int preis, int bestand) {
+    public void artikelBearbeiten(Artikel artikel, String name, int bestand, int preis) {
+        artikelService.artikelBearbeiten(artikel, name, bestand, preis);
         
     }
 
