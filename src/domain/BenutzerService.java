@@ -4,6 +4,7 @@ import java.util.Map;
 
 import domain.verwaltung.Benutzer;
 import domain.verwaltung.KundenVerwaltung;
+import domain.verwaltung.MitarbeiterVerwaltung;
 
 import java.util.HashMap;
 
@@ -19,6 +20,19 @@ public class BenutzerService {
 
         KundenVerwaltung neuerKunde = new KundenVerwaltung(name, benutzerkennung, passwort, adresse, kundenID);
         benutzerMap.put(benutzerkennung, neuerKunde);
+        return true;
+    }
+
+    public boolean registriereMitarbeiter(Benutzer ausfuehrenderBenutzer, String name, String benutzerkennung, String passwort, int mitarbeiterID) {
+        if (!(ausfuehrenderBenutzer instanceof MitarbeiterVerwaltung)) {
+            return false;
+        }
+        if (benutzerMap.containsKey(benutzerkennung)) {
+            return false;
+        }
+
+        MitarbeiterVerwaltung neuerMitarbeiter = new MitarbeiterVerwaltung(name, benutzerkennung, passwort, mitarbeiterID);
+        benutzerMap.put(benutzerkennung, neuerMitarbeiter);
         return true;
     }
 
