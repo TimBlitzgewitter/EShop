@@ -7,7 +7,7 @@ public class Artikel extends Kategorie{
     private int bestand;
     private int preis;
 
-    Artikel(String kategorie_name, int id, String artikel_name, int bestand, int preis) {
+    Artikel(String kategorie_name, int id, String artikel_name, int bestand, int preis) { //Artikel ist package Private. ArtikelService kann darauf zugreifen
         super(kategorie_name);
         this.artikelID = id;
         this.artikel_name = artikel_name;

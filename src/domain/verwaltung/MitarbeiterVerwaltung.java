@@ -7,7 +7,7 @@ import domain.bestand.ArtikelService;
 public class MitarbeiterVerwaltung extends Benutzer implements ArtikelVerwaltung {
 
     private int mitarbeiterID;
-    private ArtikelService artikelService = new ArtikelService();
+    private ArtikelService artikelService = new ArtikelService(); //ArtikelService objekt, um dessen Methoden zu verwenden
 
     public MitarbeiterVerwaltung(String name,String benutzerkennung, String passwort, int id) {
         super(name, benutzerkennung, passwort);
@@ -26,13 +26,8 @@ public class MitarbeiterVerwaltung extends Benutzer implements ArtikelVerwaltung
         return artikelService.artikelAnlegen(kategorie_name, id, name, bestand, preis);
     }
 
+    //auf Methode zum artikelBearbeiten zugreifen. Änderung an allen Parametern möglich
     public void artikelBearbeiten(Artikel artikel, String name, int bestand, int preis) {
         artikelService.artikelBearbeiten(artikel, name, bestand, preis);
-        
     }
-
-    public void neuerMitarbeiter() {
-
-    }
-
 }
