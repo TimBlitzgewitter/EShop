@@ -17,16 +17,13 @@ public class ShopCUI {
 
     private BufferedReader in;
     private List<Artikel> artikelListe;
-    private List<KundenVerwaltung> kundenListe;
-    private KundenVerwaltung eingeloggterKunde;
     private ArtikelService artikelService = new ArtikelService();
     private BenutzerService benutzerService = new BenutzerService();
+    private ShoppingService shoppingService = new ShoppingService();
 
     public ShopCUI() {
         this.in = new BufferedReader(new InputStreamReader(System.in));
         this.artikelListe = new ArrayList<>();
-        this.kundenListe = new ArrayList<>();
-        this.eingeloggterKunde = null;
 
         //Hinzufügen von Test-Artikeln
         artikelListe.add(artikelService.artikelAnlegen("Kuechengeraete",1 , "Kaffeemaschine", 10, 79.99f));
@@ -72,14 +69,30 @@ public class ShopCUI {
             case "a":
                 this.zeigeArtikelAn();
                 break;
-            case "l":
+            case "b":
+             //   this.artikelService.artikelBearbeiten(); //Parameter hier in der CUI mit einer Methode aufsammeln und dann Methode aufrufen
+                break;
+            
+            case "e":
                 this.login();
                 break;
-            case "r":
-                this.registrieren();
+            case "k":
+                this.shoppingService.kaufen();
+                break;
+            case "l":
+                this.shoppingService.warenkorbLeeren();
+                break;
+            case "m":
+              //  this.benutzerService.registriereMitarbeiter(); //Parameter hier in der CUI sammeln und dann registriereMitarbeiter() damit aufrufen
+                break;
+            case "o":
+                this.benutzerService.ausloggen();
                 break;
             case "q":
                 System.out.println("Beende Programm...");
+                break;
+            case "r":
+                this.registrieren();
                 break;
             default:
                 System.out.println("ungueltige Eingabe");
@@ -101,14 +114,13 @@ public class ShopCUI {
         System.out.print("Passwort > ");
         String passwort = liesEingabe();
 
-        for (KundenVerwaltung kunde : kundenListe) {
-            if (kunde.getBenutzerkennung().equals(benutzerkennung) && kunde.pruefePasswort(passwort)) {
-                eingeloggterKunde = kunde;
-                System.out.println("Login erfolgreich. Willkommen, " + kunde.getName() + "!");
-                return;
-            } 
+        var benutzer = benutzerService.einloggen(benutzerkennung, passwort);
+
+        if (benutzer != null) {
+            System.out.println("Login erfolgreich. Willkommen, " + benutzer.getName() + "!");
+        } else {
+            System.out.println("Loginversuch fehlgeschlagen.");
         }
-        System.out.println("Loginversuch fehlgeschlagen.");
     }
 
     private void registrieren() throws IOException {
@@ -125,11 +137,10 @@ public class ShopCUI {
         String adresse = liesEingabe();
 
 
-        int id = kundenListe.size() + 1;
-        KundenVerwaltung neuerKunde = new KundenVerwaltung(name, benutzerkennung, passwort, adresse, id);
-        kundenListe.add(neuerKunde);
+        int kundenID = kundenID + 1; //wie mache ich einen vernuenftigen Counter für die ID's?
+        KundenVerwaltung neuerKunde = new KundenVerwaltung(name, benutzerkennung, passwort, adresse, kundenID);
 
-        System.out.println("Registrierung erfolgreich. Ihre Kundennummer ist: " + id);
+        System.out.println("Registrierung erfolgreich. Ihre Kundennummer ist: " + kundenID);
     }
 
     public void run() {
