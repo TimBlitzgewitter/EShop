@@ -34,10 +34,10 @@ public class ShopCUI {
         if (benutzerService.getEingeloggterBenutzer() == null) {
         
             System.out.print("\n===== Shop Menü =====");
-            System.out.print("         \n  Registrieren:  'r'");
-            System.out.print("         \n  Login: 'e'");
+            System.out.print("         \n 1. Registrieren");
+            System.out.print("         \n 2. Login");
             System.out.print("         \n  ---------------------");
-            System.out.println("         \n  Beenden:        'q'");
+            System.out.println("         \n 3. Beenden");
 
         } else if (benutzerService.getEingeloggterBenutzer() instanceof MitarbeiterVerwaltung) {
             System.out.print("\n===== Mitarbeiter Menu =====");
@@ -73,7 +73,7 @@ public class ShopCUI {
              //   this.artikelService.artikelBearbeiten(); //Parameter hier in der CUI mit einer Methode aufsammeln und dann Methode aufrufen
                 break;
             
-            case "e":
+            case "2":
                 this.login();
                 break;
             case "k":
@@ -88,10 +88,10 @@ public class ShopCUI {
             case "o":
                 this.benutzerService.ausloggen();
                 break;
-            case "q":
+            case "3":
                 System.out.println("Beende Programm...");
                 break;
-            case "r":
+            case "1":
                 this.registrieren();
                 break;
             default:
