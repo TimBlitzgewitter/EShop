@@ -5,9 +5,9 @@ public class Artikel extends Kategorie{
     private int artikelID;
     private String artikel_name;
     private int bestand;
-    private int preis;
+    private float preis;
 
-    Artikel(String kategorie_name, int id, String artikel_name, int bestand, int preis) { //Artikel ist package Private. ArtikelService kann darauf zugreifen
+    Artikel(String kategorie_name, int id, String artikel_name, int bestand, float preis) { //Artikel ist package Private. ArtikelService kann darauf zugreifen
         super(kategorie_name);
         this.artikelID = id;
         this.artikel_name = artikel_name;
@@ -27,7 +27,7 @@ public class Artikel extends Kategorie{
         return artikel_name;
     }
 
-    public int getPreis() {
+    public float getPreis() {
         return preis;
     }
 
@@ -43,7 +43,7 @@ public class Artikel extends Kategorie{
         this.artikel_name = artikel_name;
     }
 
-    void setPreis(int preis) {
+    void setPreis(float preis) {
         this.preis = preis;
     }
 }
