@@ -1,5 +1,6 @@
 package persistenz;
 
+/* 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -7,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+*/
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class FilePersistenzManager implements PersistenzManager{
 
     ArtikelService artikelService = new ArtikelService();
 
-    static List<Artikel> alist = new ArrayList<Artikel>();
+    public static List<Artikel> alist = new ArrayList<Artikel>();
 
     static List<KundenVerwaltung> klist = new ArrayList<KundenVerwaltung>();
 

@@ -30,4 +30,8 @@ public class MitarbeiterVerwaltung extends Benutzer implements ArtikelVerwaltung
     public void artikelBearbeiten(Artikel artikel, String name, int bestand, int preis) {
         artikelService.artikelBearbeiten(artikel, name, bestand, preis);
     }
+
+    public void ereignisseEinsehen() {
+        
+    }
 }

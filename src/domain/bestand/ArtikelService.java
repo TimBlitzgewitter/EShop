@@ -12,10 +12,9 @@ public class ArtikelService {
         return neuerArtikel;
     }
     //bearbeiten bereits existierender Artikel
-    public void artikelBearbeiten(Artikel artikel, String name, int bestand, float preis) {
+    public Artikel artikelBearbeiten(Artikel artikel, String name, int bestand, float preis) {
         ereignis.ereignisErzeugen(artikel, name, bestand, preis);
-        artikel.setArtikel_name(name);
-        artikel.setBestand(bestand);
-        artikel.setPreis(preis);
+        
+        return new Artikel(artikel.getKategorie(), artikel.getArtikelID(), name, bestand, preis);
     }
 }

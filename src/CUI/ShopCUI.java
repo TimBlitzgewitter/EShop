@@ -16,17 +16,17 @@ import java.util.ArrayList;
 public class ShopCUI {
 
     private BufferedReader in;
-    private List<Artikel> artikelListe;
+    private List<Artikel> artikelListe = new ArrayList<>();
+;
     private ArtikelService artikelService = new ArtikelService();
     private BenutzerService benutzerService = new BenutzerService();
     private ShoppingService shoppingService = new ShoppingService();
     private int kundenCounter = 1; // Zähler für KundenIDs
     private int mitarbeiterCounter = 1; // Zähler für MitarbeiterIDs
 
+
     public ShopCUI() {
         this.in = new BufferedReader(new InputStreamReader(System.in));
-        this.artikelListe = new ArrayList<>();
-
         // Test-Artikel hinzufügen
         artikelListe.add(artikelService.artikelAnlegen("Kuechengeraete", 1, "Kaffeemaschine", 10, 79.99f));
         artikelListe.add(artikelService.artikelAnlegen("Kuechengeraete", 2, "Toaster", 5, 39.99f));
@@ -137,7 +137,12 @@ public class ShopCUI {
             System.out.print("Neuer Preis (aktuell: " + artikelToEdit.getPreis() + ") > ");
             float neuerPreis = Float.parseFloat(liesEingabe());
 
-            artikelService.artikelBearbeiten(artikelToEdit, neuerName, neuerBestand, neuerPreis);
+            for (int i = 0; i < artikelListe.size(); i++) {
+                if (artikelListe.get(i).getArtikelID() == artikelId) {
+                    artikelListe.set(i, artikelService.artikelBearbeiten(artikelToEdit, neuerName, neuerBestand, neuerPreis));
+                }
+            }
+            
             System.out.println("Artikel erfolgreich bearbeitet!");
         } catch (NumberFormatException e) {
             System.out.println("Ungültige Zahleneingabe!");

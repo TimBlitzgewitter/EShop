@@ -1,8 +1,9 @@
 package persistenz;
 
+/* 
 import java.io.IOException;
-
 import domain.bestand.Artikel;
+*/
 
 public interface PersistenzManager {
 

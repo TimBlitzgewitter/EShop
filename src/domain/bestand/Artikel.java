@@ -6,13 +6,19 @@ public class Artikel extends Kategorie{
     private String artikel_name;
     private int bestand;
     private float preis;
+    private String kategorie_name;
 
     Artikel(String kategorie_name, int id, String artikel_name, int bestand, float preis) { //Artikel ist package Private. ArtikelService kann darauf zugreifen
         super(kategorie_name);
+        this.kategorie_name = kategorie_name;
         this.artikelID = id;
         this.artikel_name = artikel_name;
         this.bestand = bestand;
         this.preis = preis;
+    }
+
+    public String getKategorie() {
+        return kategorie_name;
     }
 
     public int getArtikelID() {
