@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class ShopCUI {
 
     private BufferedReader in;
-    private List<Artikel> artikelListe = new ArrayList<>();
 ;
     private ArtikelService artikelService = new ArtikelService();
     private BenutzerService benutzerService = new BenutzerService();
@@ -28,8 +27,8 @@ public class ShopCUI {
     public ShopCUI() {
         this.in = new BufferedReader(new InputStreamReader(System.in));
         // Test-Artikel hinzufügen
-        artikelListe.add(artikelService.artikelAnlegen("Kuechengeraete", 1, "Kaffeemaschine", 10, 79.99f));
-        artikelListe.add(artikelService.artikelAnlegen("Kuechengeraete", 2, "Toaster", 5, 39.99f));
+        artikelService.fuegeArtikelHinzu(artikelService.artikelAnlegen("Kuechengeraete", 1, "Kaffeemaschine", 10, 79.99f));
+        artikelService.fuegeArtikelHinzu(artikelService.artikelAnlegen("Kuechengeraete", 2, "Toaster", 5, 39.99f));
 
         // Test-Mitarbeiter hinzufügen (für Demo-Zwecke)
         benutzerService.registriereMitarbeiter("Admin", "admin", "admin123", 1);
@@ -104,7 +103,7 @@ public class ShopCUI {
 
     private void zeigeArtikelAn() {
         System.out.println("\nVerfuegbare Artikel:");
-        for (Artikel artikel : artikelListe) {
+        for (Artikel artikel : artikelService.getAlleArtikel()) {
             System.out.println("Nr: " + artikel.getArtikelID() + ", Bezeichnung: " + artikel.getArtikel_name() + 
                              ", Bestand: " + artikel.getBestand() + ", Preis: " + artikel.getPreis() + " €");
         }
@@ -116,7 +115,7 @@ public class ShopCUI {
             int artikelId = Integer.parseInt(liesEingabe());
 
             Artikel artikelToEdit = null;
-            for (Artikel artikel : artikelListe) {
+            for (Artikel artikel : artikelService.getAlleArtikel()) {
                 if (artikel.getArtikelID() == artikelId) {
                     artikelToEdit = artikel;
                     break;
@@ -137,11 +136,10 @@ public class ShopCUI {
             System.out.print("Neuer Preis (aktuell: " + artikelToEdit.getPreis() + ") > ");
             float neuerPreis = Float.parseFloat(liesEingabe());
 
-            for (int i = 0; i < artikelListe.size(); i++) {
-                if (artikelListe.get(i).getArtikelID() == artikelId) {
-                    artikelListe.set(i, artikelService.artikelBearbeiten(artikelToEdit, neuerName, neuerBestand, neuerPreis));
-                }
-            }
+            List<Artikel> liste = artikelService.getAlleArtikel();
+            
+            Artikel neuerArtikel = artikelService.artikelBearbeiten(artikelToEdit, neuerName, neuerBestand, neuerPreis);
+            artikelService.updateArtikel(neuerArtikel);
             
             System.out.println("Artikel erfolgreich bearbeitet!");
         } catch (NumberFormatException e) {

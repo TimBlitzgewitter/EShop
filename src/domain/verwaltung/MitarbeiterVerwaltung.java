@@ -32,6 +32,8 @@ public class MitarbeiterVerwaltung extends Benutzer implements ArtikelVerwaltung
     }
 
     public void ereignisseEinsehen() {
-        
+        for (Ereignis e : Ereignis.getAlleEreignisse()) {
+            System.out.println(e.toString());
+        }
     }
 }

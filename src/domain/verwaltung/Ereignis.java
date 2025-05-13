@@ -20,7 +20,7 @@ public class Ereignis {
     private LocalDate date;
     private String beschreibung;
 
-    List<Ereignis> ereignisse = new ArrayList<>();
+    private static List<Ereignis> ereignisse = new ArrayList<>();
 
     public Ereignis(LocalDate date, String type, String beschreibung){
 
@@ -34,6 +34,29 @@ public class Ereignis {
 
     public Ereignis() {
 
+    }
+
+    public String getType() {
+        return type;
+    }
+    
+    public LocalDate getDate() {
+        return date;
+    }
+    
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    public static List<Ereignis> getAlleEreignisse() {
+        return ereignisse;
+    }
+
+    public String toString() {
+        return "Datum: " + date + "\n" +
+               "Typ: " + type + "\n" +
+               "Beschreibung: " + beschreibung + "\n" +
+               "----------------------------------------";
     }
 
     public Ereignis ereignisErzeugen(Artikel artikel, String name, int bestand, float preis) {
