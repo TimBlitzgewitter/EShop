@@ -44,18 +44,18 @@ public class ShopCUI {
             System.out.print("\n3. Beenden");
         } else if (benutzerService.getEingeloggterBenutzer() instanceof MitarbeiterVerwaltung) {
             System.out.print("\n===== Mitarbeiter Menu =====");
-            System.out.print("\nArtikel anzeigen: 'a'");
-            System.out.print("\nBestand aendern: 'b'");
-            System.out.print("\nMitarbeiter registrieren: 'm'");
-            System.out.print("\nAusloggen: 'o'");
+            System.out.print("\na: Artikel anzeigen");
+            System.out.print("\nb: Bestand aendern");
+            System.out.print("\nm: Mitarbeiter registrieren");
+            System.out.print("\no: Ausloggen");
         } else if (benutzerService.getEingeloggterBenutzer() instanceof KundenVerwaltung) {
             System.out.print("\n===== Kunden Menu =====");
-            System.out.print("\nArtikel anzeigen: 'a'");
-            System.out.print("\nArtikel in Warenkorb legen: 'w'");
-            System.out.print("\nStueckzahl im Warenkorb aendern: 's'");
-            System.out.print("\nWarenkorb leeren: 'l'");
-            System.out.print("\nWarenkorb kaufen: 'k'");
-            System.out.print("\nAusloggen: 'o'");
+            System.out.print("\na: Artikel anzeigen:");
+            System.out.print("\nw: Artikel in Warenkorb legen");
+            System.out.print("\ns: Stueckzahl im Warenkorb aendern");
+            System.out.print("\nl: Warenkorb leeren");
+            System.out.print("\nk: Warenkorb kaufen");
+            System.out.print("\no: Ausloggen");
         }
         
         System.out.print("\n> ");

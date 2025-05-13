@@ -65,4 +65,4 @@ public class BenutzerService {
     public Benutzer getEingeloggterBenutzer() {
         return eingeloggterBenutzer;
     }
-    
+}
