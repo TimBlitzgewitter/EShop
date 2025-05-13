@@ -1,9 +1,11 @@
 package CUI;
 
+import domain.BenutzerService;
 import domain.bestand.Artikel;
 import domain.bestand.ArtikelService;
 import domain.bestand.ShoppingService;
 import domain.verwaltung.KundenVerwaltung;
+import domain.verwaltung.MitarbeiterVerwaltung;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +20,7 @@ public class ShopCUI {
     private List<KundenVerwaltung> kundenListe;
     private KundenVerwaltung eingeloggterKunde;
     private ArtikelService artikelService = new ArtikelService();
+    private BenutzerService benutzerService = new BenutzerService();
 
     public ShopCUI() {
         this.in = new BufferedReader(new InputStreamReader(System.in));
@@ -31,12 +34,31 @@ public class ShopCUI {
     }
 
     private void gibMenueAus() {
-        System.out.print("\n===== Shop Menü =====");
-        System.out.print("         \n  Artikel anzeigen: 'a'");
-        System.out.print("         \n  Login: 'l'");
-        System.out.print("         \n  Registrieren:  'r'");
-        System.out.print("         \n  ---------------------");
-        System.out.println("         \n  Beenden:        'q'");
+        if (benutzerService.getEingeloggterBenutzer() == null) {
+        
+            System.out.print("\n===== Shop Menü =====");
+            System.out.print("         \n  Registrieren:  'r'");
+            System.out.print("         \n  Login: 'e'");
+            System.out.print("         \n  ---------------------");
+            System.out.println("         \n  Beenden:        'q'");
+
+        } else if (benutzerService.getEingeloggterBenutzer() instanceof MitarbeiterVerwaltung) {
+            System.out.print("\n===== Mitarbeiter Menu =====");
+            System.out.print("         \n  Artikel anzeigen: 'a'");
+            System.out.print("\nBestand aendern: 'b'");
+            System.out.print("\n Mitarbeiter registrieren: 'm'");
+            System.out.print("\nAusloggen: 'o'");
+        } else if (benutzerService.getEingeloggterBenutzer() instanceof KundenVerwaltung) {
+            System.out.print("\n===== Kunden Menu =====");
+            System.out.print("         \n  Artikel anzeigen: 'a'");
+            System.out.print("\nArtikel in Warenkorb legen: 'w'");
+            System.out.print("\nStueckzahl im Warenkorb aendern: 's'");
+            System.out.print("\nWarenkorb leeren: 'l'");
+            System.out.print("\nWarenkorb kaufen: 'k'");
+            System.out.print("\nAusloggen: 'o'");
+
+        }
+        
         System.out.print("> ");
         System.out.flush(); //was ist flush? Stand in seinem Code Beispiel von der Bibliothek
     }
