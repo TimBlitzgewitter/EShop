@@ -53,23 +53,26 @@ public class FilePersistenzManager implements PersistenzManager{
 	 */
 	public Artikel ladeArtikel() throws IOException {
 		// Titel einlesen
-		String titel = liesZeile();
-		if (titel == null) {
+		String idString = liesZeile();
+		if (idString == null) {
 			// keine Daten mehr vorhanden
 			return null;
 		}
+        // ... und von String in int konvertieren
+        int id = Integer.parseInt(idString);
+
 		// Nummer einlesen ...
-		String nummerString = liesZeile();
-		// ... und von String in int konvertieren
-		int nummer = Integer.parseInt(nummerString);
+		String name = liesZeile();
 		
-		// Buch ausgeliehen?
-		String verfuegbarCode = liesZeile();
-		// Codierung des Ausleihstatus in boolean umwandeln
-		boolean verfuegbar = verfuegbarCode.equals("t") ? true : false;
+		// Bestand
+		String bestandString = liesZeile();
+        int bestand = Integer.parseInt(bestandString);
+
+        // Preis
+        String preisString = liesZeile();
+        float preis = Float.parseFloat(preisString);
 		
-		return null; 
-        // return new Artikel(Artikel Data);
+        return new Artikel(id, name, bestand, preis);
 	}
 
 	/**
@@ -83,7 +86,10 @@ public class FilePersistenzManager implements PersistenzManager{
 
 	public boolean speichereArtikel(Artikel artikel) throws IOException {
 		
-
+        schreibeZeile(Integer.valueOf(artikel.getArtikelID()).toString());
+        schreibeZeile(artikel.getArtikel_name());
+        schreibeZeile(Integer.valueOf(artikel.getBestand()).toString());
+        schreibeZeile(Integer.valueOf(artikel.getPreis()).toString());
 
 		return true;
 	}
