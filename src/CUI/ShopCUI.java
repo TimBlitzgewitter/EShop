@@ -45,6 +45,7 @@ public class ShopCUI {
             System.out.print("\n===== Mitarbeiter Menu =====");
             System.out.print("\na: Artikel anzeigen");
             System.out.print("\nb: Bestand aendern");
+            System.out.print("\ne: Ereignisse anzeigen");
             System.out.print("\nm: Mitarbeiter registrieren");
             System.out.print("\no: Ausloggen");
         } else if (benutzerService.getEingeloggterBenutzer() instanceof KundenVerwaltung) {
@@ -89,6 +90,12 @@ public class ShopCUI {
                 this.benutzerService.ausloggen();
                 System.out.println("Erfolgreich ausgeloggt.");
                 break;
+            case "e":
+                if (benutzerService.getEingeloggterBenutzer() instanceof MitarbeiterVerwaltung) {
+                    MitarbeiterVerwaltung m = (MitarbeiterVerwaltung) benutzerService.getEingeloggterBenutzer();
+                    m.ereignisseEinsehen();
+                }
+                break;
             case "3":
                 System.out.println("Beende Programm...");
                 System.exit(0);
@@ -131,10 +138,20 @@ public class ShopCUI {
             String neuerName = liesEingabe();
 
             System.out.print("Neuer Bestand (aktuell: " + artikelToEdit.getBestand() + ") > ");
-            int neuerBestand = Integer.parseInt(liesEingabe());
+            String neuerBestandString = liesEingabe();
+            int neuerBestand;
+            if (neuerBestandString.equals("")) {
+                neuerBestand = -1;
+            } else neuerBestand = Integer.parseInt(neuerBestandString);
+             
 
             System.out.print("Neuer Preis (aktuell: " + artikelToEdit.getPreis() + ") > ");
-            float neuerPreis = Float.parseFloat(liesEingabe());
+            String neuerPreisString = liesEingabe();
+
+            float neuerPreis;
+            if (neuerPreisString.equals("")) {
+                neuerPreis = -1;
+            } else neuerPreis = Float.parseFloat(neuerPreisString);
 
             List<Artikel> liste = artikelService.getAlleArtikel();
             

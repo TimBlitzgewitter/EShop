@@ -27,6 +27,7 @@ public class FilePersistenzManager implements PersistenzManager{
 
     static List<MitarbeiterVerwaltung> mlist = new ArrayList<MitarbeiterVerwaltung>();
 
+	/***
         public void erzeugeTestlisten() {
         //Hinzufügen von Test-Artikeln
         alist.add(artikelService.artikelAnlegen("Kuechengeraete", 1, "Kaffeemaschine", 10, 79.99f));
@@ -34,7 +35,7 @@ public class FilePersistenzManager implements PersistenzManager{
 
         }
 
-    /*** 
+     
 	private BufferedReader reader = null;
 	private PrintWriter writer = null;
 

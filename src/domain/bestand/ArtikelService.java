@@ -28,6 +28,18 @@ public class ArtikelService {
     
     //bearbeiten bereits existierender Artikel
     public Artikel artikelBearbeiten(Artikel artikel, String name, int bestand, float preis) {
+        
+
+        if (name.equals("")) {
+            name = artikel.getArtikel_name();
+        }
+        if (bestand == -1) {
+            bestand = artikel.getBestand();
+        }
+        if (preis == -1) {
+            preis = artikel.getPreis();
+        }
+
         ereignis.ereignisErzeugen(artikel, name, bestand, preis);
         
         return new Artikel(artikel.getKategorie(), artikel.getArtikelID(), name, bestand, preis);
